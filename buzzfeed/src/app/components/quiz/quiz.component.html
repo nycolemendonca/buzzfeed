@@ -1,0 +1,38 @@
+<section class="w-full m-10 px-4">
+
+  <!-- quizz logo -->
+  <div class="flex flex-col justify-center items-center">
+    <img src="../../../assets/img/logo.png" alt="logo">
+    <h3 class="mt-2">{{ titleQuizz }}</h3>
+  </div>
+
+  <!-- quizz questions -->
+  <div
+    *ngIf=!finished
+    class="flex justify-center items-center w-100 bg-violet-900 rounded-lg text-xl py-2 my-5">
+    <h3>{{ questionSelected.question }}</h3>
+  </div>
+
+  <!-- quizz options -->
+  <div
+    *ngIf=!finished
+    class="inline-block flex-wrap justify-center items-center w-full gap-2">
+
+    <button
+      *ngFor="let option of questionSelected.options; let i = index"
+      (click)="playerChoose(option.alias)"
+      class="bg-transparent rounded-lg border border-green-500 w-full hover:bg-green-500 p-4 mb-1">
+
+      {{ option.name }}
+    </button>
+  </div>
+
+  <!-- quizz results -->
+  <!-- ngIf: Show element only when finished is true -->
+  <div
+    *ngIf=finished
+    class="w-full h-96 rounded-lg bg-purple-900 p-2 flex flex-col justify-center items-center mt-2">
+    <h1>O seu resultado é:</h1>
+    <p>{{ answerSelected }}</p>
+  </div>
+</section>
